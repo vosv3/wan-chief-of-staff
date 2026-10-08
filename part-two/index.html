@@ -3,60 +3,91 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#020816">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Part two: what is in the ChiefOfStaff folder and the five steps to switch it on.">
 <title>Your Chief of Staff, Installed</title>
-<script>document.documentElement.classList.add('js');</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Instrument+Serif:ital@1&display=swap">
-<link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net">
+<script>
+(function (d) {
+  var w = d.clientWidth || innerWidth, h = innerHeight;
+  d.style.setProperty('--u', Math.min(w / 1280, h / 800));
+  d.style.setProperty('--vh', h + 'px');
+  d.classList.add('js');
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'animate' in d) {
+    d.classList.add('intro');
+    window.__introFailsafe = setTimeout(function () { d.classList.remove('intro'); }, 4000);
+  }
+})(document.documentElement);
+</script>
 <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body class="deck">
-<div class="hero-wrap">
-  <section class="frame" id="frame" aria-label="Your Chief of Staff, Installed">
-    <video class="bg" autoplay muted loop playsinline preload="auto" disablepictureinpicture aria-hidden="true" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4"></video>
-    <div class="noise-overlay" aria-hidden="true"></div>
-    <div class="shade" aria-hidden="true"></div>
+<section class="hero cover" id="hero" aria-label="Your Chief of Staff, Installed">
+  <div class="photo" id="photo" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="auto" width="1586" height="992" poster="../assets/hero.jpg" src="../assets/hero.mp4" disablepictureinpicture></video>
+  </div>
 
-    <nav class="pillnav" aria-label="Sections">
-      <a class="brand" href="../">Chief of Staff</a>
-      <span class="sep" aria-hidden="true"></span>
-        <a href="#1" data-slide="1" data-section="walkthrough">Walkthrough</a>
-        <a href="#9" data-slide="9" data-section="install">Install</a>
-      <button class="mini" type="button" id="plan-button">Start</button>
-    </nav>
+  <header class="nav-l">
+    <a class="brand" href="../index.html" aria-label="Chief of Staff guide home" style="--nx:-0.5px;--ny:-2.75px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" aria-hidden="true">
+        <circle cx="12.2" cy="11.9" r="8.45" stroke-width="2"/>
+        <path d="M12.2 0.1V24" stroke-width="1.9"/>
+        <path d="M0 11.9H24.4" stroke-width="1.95"/>
+      </svg>
+      <span class="word">chief of staff</span>
+    </a>
+  </header>
+  <div class="nav-r">
+    <div class="hdr">
+      <nav class="links" aria-label="Sections">
+        <a href="#1" data-slide="1" data-section="walkthrough"><span>Walkthrough</span></a>
+        <a href="#9" data-slide="9" data-section="install"><span>Install</span></a>
+      </nav>
+      <button class="hbtn start" type="button" id="plan-button"><span>Start</span></button>
+    </div>
+    <span class="rail" aria-hidden="true"></span>
+  </div>
 
-    <main class="stage anim" id="stage" aria-live="polite">
-      <div class="grid">
-        <div class="left">
-          <p class="eyebrow fu" id="eyebrow" style="--d:0s"></p>
-          <p class="giant" id="giant" hidden></p>
-          <h1 class="title" id="title"></h1>
-        </div>
-        <div class="right">
-          <p class="title-sm" id="title-sm" role="heading" aria-level="1" hidden></p>
-          <p class="copy" id="copy"></p>
-          <div class="actions">
-            <button class="cta fu" type="button" id="next-button" style="--d:.45s"><span class="label">Next</span><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>
-          <button class="ghost fu" type="button" id="start-button" style="--d:.55s">Start</button>
-            <a class="ghost fu" id="other-link" href="../part-one/" style="--d:.55s" hidden>Part one</a>
-            <button class="back fu" type="button" id="back-button" style="--d:.6s" aria-label="Back to the previous slide"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg><span>Back</span></button>
-          </div>
-          <div class="meta fu" style="--d:.65s">
-            <a class="home" href="../">Chief of Staff</a>
-            <span id="section-name"></span>
-            <div class="bar" id="bar" role="progressbar" aria-label="Deck progress" aria-valuemin="1" aria-valuemax="16" aria-valuenow="1"><i id="bar-fill"></i></div>
-            <span id="slide-count">Slide 1 / 16</span>
-          </div>
-        </div>
-      </div>
-    </main>
-  </section>
-</div>
+  <main class="stage" id="stage" aria-live="polite">
+    <div class="pill glass" style="--nx:0.75px;--ny:0px">
+      <i class="sq" aria-hidden="true"></i>
+      <span class="lbl" id="tag"></span>
+      <svg viewBox="0 0 11 10.5" fill="none" stroke="#fff" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M1 0.9l4.2 4.35L1 9.6"/><path d="M6.2 0.9l4.2 4.35L6.2 9.6"/></svg>
+    </div>
+    <h1 style="--nx:-3.0px;--ny:158px"><span class="ln" id="line-one"></span> <span class="ln" id="line-two"></span></h1>
+    <p class="lede" id="copy" style="--nx:-3.0px;--ny:250px"></p>
+    <div class="cta" id="cta">
+      <button class="btn b1" type="button" id="start-button" style="--nx:-0.25px;--ny:0px"><span>START</span></button>
+      <button class="btn b2" type="button" id="begin-button" style="--nx:0.5px;--ny:0px">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.05" aria-hidden="true"><circle cx="2.3" cy="2.3" r="1.75"/><circle cx="9.7" cy="2.3" r="1.75"/><circle cx="2.3" cy="9.7" r="1.75"/><circle cx="9.7" cy="9.7" r="1.75"/><path d="M3.6 3.9L8.4 8.1"/></svg>
+        <span>BEGIN</span>
+      </button>
+      <a class="btn b1" id="home-button" href="../index.html" style="--nx:-0.25px;--ny:0px" hidden><span>GUIDE HOME</span></a>
+      <a class="btn b2" id="other-button" href="../part-one/index.html" style="--nx:0.5px;--ny:0px" hidden>
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.05" aria-hidden="true"><circle cx="2.3" cy="2.3" r="1.75"/><circle cx="9.7" cy="2.3" r="1.75"/><circle cx="2.3" cy="9.7" r="1.75"/><circle cx="9.7" cy="9.7" r="1.75"/><path d="M3.6 3.9L8.4 8.1"/></svg>
+        <span>PART ONE</span>
+      </a>
+    </div>
+  </main>
 
+  <div class="foot-l">
+    <p class="count" style="margin:0"><i class="sq" aria-hidden="true"></i><span id="slide-count">1 / 16</span></p>
+  </div>
+  <div class="foot-r">
+    <div class="ctrls">
+      <button class="ctl glass" type="button" id="back-button" aria-label="Back to the previous slide">
+        <svg viewBox="0 0 6 10.5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="square" aria-hidden="true"><path d="M5 0.9L0.9 5.25L5 9.6"/></svg>
+        <span>BACK</span>
+      </button>
+      <button class="ctl glass" type="button" id="next-button" aria-label="Next slide">
+        <span>NEXT</span>
+        <svg viewBox="0 0 6 10.5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="square" aria-hidden="true"><path d="M1 0.9L5.1 5.25L1 9.6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/hero.js"></script>
 <script>
 window.DECK = (function () {
   'use strict';
@@ -110,12 +141,9 @@ window.DECK = (function () {
       one: 'Next week,', two: 'with James.',
       copy: '/connect-github, when you are ready: undo, version history and a private off-site copy of the folder. Then /connect, Google Calendar first, read-only, so /metrics can count calls.' }
   ];
-  var total = slides.length;
-  var sectionNames = { walkthrough: 'Walkthrough', install: 'Install' };
-  return { slides: slides, sectionNames: sectionNames, planSlide: 8, giant: null };
+  return { slides: slides, planSlide: 8 };
 })();
 </script>
-<script src="../assets/motion.js"></script>
 <script src="../assets/deck.js"></script>
 </body>
 </html>

@@ -1,31 +1,24 @@
-/* Wan's Chief of Staff guide: deck navigation.
-   Arrow keys / Space / click / swipe advance, #n hash per slide (deep-linkable),
-   Home and End, section links, the plan/Start buttons. */
+/* Chief of Staff guide: deck navigation (arrow keys, Space, click, swipe, #n hash, Home/End, section links, back/next, Start) */
 (function () {
   'use strict';
   var C = window.DECK;
-  var M = window.Motion;
   var slides = C.slides;
   var total = slides.length;
 
-  var frame = document.getElementById('frame');
-  var stage = document.getElementById('stage');
-  var eyebrow = document.getElementById('eyebrow');
-  var title = document.getElementById('title');
-  var titleSm = document.getElementById('title-sm');
-  var giantEl = document.getElementById('giant');
+  var hero = document.getElementById('hero');
+  var pillLbl = document.getElementById('tag');
   var copyEl = document.getElementById('copy');
   var countEl = document.getElementById('slide-count');
-  var sectionEl = document.getElementById('section-name');
-  var barFill = document.getElementById('bar-fill');
-  var bar = document.getElementById('bar');
-  var startBtn = document.getElementById('start-button');
-  var otherLink = document.getElementById('other-link');
-  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.pillnav a[data-section]'));
-  var current = -1;
-  var cancelReveal = function () {};
+  var begin = document.getElementById('begin-button');
+  var homeBtn = document.getElementById('home-button');
+  var otherBtn = document.getElementById('other-button');
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.links a'));
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var current = 0;
+  var ready = false;
 
-  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function isCover(i) { return i === 0 || i === total - 1; }
+  Hero.videoWanted = function () { return isCover(current); };
 
   function hashToIndex() {
     var m = /^#(\d{1,2})$/.exec(location.hash || '');
@@ -35,92 +28,68 @@
     return n - 1;
   }
 
-  function headline(target, s, startIdx) {
-    target.textContent = '';
-    var l1 = document.createElement('span');
-    l1.className = 'ln one';
-    var l2 = document.createElement('span');
-    l2.className = 'ln two';
-    target.appendChild(l1);
-    target.appendChild(document.createTextNode(' '));
-    target.appendChild(l2);
-    var idx = M.words(l1, [{ text: s.one }], startIdx);
-    return M.words(l2, [{ text: s.two }], idx);
-  }
-
   function render(i) {
     var s = slides[i];
-    var giant = C.giant && C.giant[i];
-    stage.classList.toggle('is-giant', !!giant);
-
-    eyebrow.textContent = pad(i + 1) + ' · ' + s.theme;
-
-    var idx = 0;
-    giantEl.textContent = '';
-    giantEl.hidden = !giant;
-    title.hidden = !!giant;
-    titleSm.hidden = !giant;
-    if (giant) {
-      idx = M.words(giantEl, [{ text: giant, asterisk: true }], 0);
-      title.textContent = '';
-      headline(titleSm, s, idx);
-    } else {
-      titleSm.textContent = '';
-      headline(title, s, 0);
-    }
-
-    cancelReveal();
-    var spans = M.chars(copyEl, s.copy);
-
-    countEl.textContent = 'Slide ' + (i + 1) + ' / ' + total;
-    sectionEl.textContent = C.sectionNames[s.section];
-    barFill.style.width = ((i + 1) / total * 100).toFixed(2) + '%';
-    bar.setAttribute('aria-valuenow', String(i + 1));
+    var cover = isCover(i);
+    hero.classList.toggle('cover', cover);
+    hero.classList.toggle('content', !cover);
+    pillLbl.textContent = s.theme;
+    // looked up each time: the entrance restores the headline markup, which replaces these nodes
+    document.getElementById('line-one').textContent = s.one;
+    document.getElementById('line-two').textContent = s.two;
+    // keep hyphenated terms (end-session, /check-in) on one line; markup only, words unchanged
+    copyEl.innerHTML = s.copy.replace(/[A-Za-z\/]+(?:-[A-Za-z]+)+/g, '<span style="white-space:nowrap">$&</span>');
+    copyEl.classList.toggle('keep', !!s.keepBreaks);
+    begin.hidden = i !== 0;
+    var sb = document.getElementById('start-button');
+    if (sb) sb.hidden = i !== 0;
+    homeBtn.hidden = otherBtn.hidden = i !== total - 1;
+    countEl.textContent = (i + 1) + ' / ' + total;
     navLinks.forEach(function (a) {
       var on = a.getAttribute('data-section') === s.section;
       a.classList.toggle('active', on);
       if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
     });
-    if (startBtn) startBtn.hidden = i !== 0;
-    if (otherLink) otherLink.hidden = i !== total - 1;
-
     var target = '#' + (i + 1);
     if (location.hash !== target) {
       try { history.replaceState(null, '', target); } catch (e) { location.hash = target; }
     }
-
-    M.replay(stage);
-    cancelReveal = M.revealOverTime(spans, 1300, 300);
+    Hero.layout();
+    Hero.play();
   }
 
   function go(i) {
     if (i < 0) i = total - 1;
     if (i >= total) i = 0;
-    if (i === current) return;
+    if (i === current && ready) return;
     current = i;
+    Hero.cancel();
     render(i);
+    if (ready && !reduceMotion.matches) Hero.entrance({ t: .6 });
   }
   function next() { go(current + 1); }
   function prev() { go(current - 1); }
 
   document.getElementById('next-button').addEventListener('click', next);
   document.getElementById('back-button').addEventListener('click', prev);
+  begin.addEventListener('click', function () { go(1); });
   var plan = document.getElementById('plan-button');
   if (plan) plan.addEventListener('click', function () { go(C.planSlide); });
+  var startBtn = document.getElementById('start-button');
   if (startBtn) startBtn.addEventListener('click', function () { go(C.planSlide); });
+
+  /* click or tap on the slide itself advances */
+  hero.addEventListener('click', function (e) {
+    if (e.target.closest('a, button, input, textarea, select, nav')) return;
+    var sel = window.getSelection && window.getSelection();
+    if (sel && String(sel).length) return;
+    next();
+  });
   Array.prototype.forEach.call(document.querySelectorAll('[data-slide]'), function (el) {
     el.addEventListener('click', function (e) {
       e.preventDefault();
       go(parseInt(el.getAttribute('data-slide'), 10) - 1);
     });
-  });
-
-  /* click or tap on the slide itself advances */
-  frame.addEventListener('click', function (e) {
-    if (e.target.closest('a, button, input, textarea, select, nav')) return;
-    var sel = window.getSelection && window.getSelection();
-    if (sel && String(sel).length) return;
-    next();
   });
 
   document.addEventListener('keydown', function (e) {
@@ -169,6 +138,8 @@
     if (i !== current) go(i);
   });
 
-  M.keepPlaying(frame.querySelector('video.bg'));
-  go(hashToIndex());
+  current = hashToIndex();
+  render(current);
+  ready = true;
+  Hero.start({ chrome: true });
 })();
