@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Part two: what is in the ChiefOfStaff folder and the five steps to switch it on.">
+<title>Your Chief of Staff, Installed</title>
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Instrument+Serif:ital@1&display=swap">
+<link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body class="deck">
+<div class="hero-wrap">
+  <section class="frame" id="frame" aria-label="Your Chief of Staff, Installed">
+    <video class="bg" autoplay muted loop playsinline preload="auto" disablepictureinpicture aria-hidden="true" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4"></video>
+    <div class="noise-overlay" aria-hidden="true"></div>
+    <div class="shade" aria-hidden="true"></div>
+
+    <nav class="pillnav" aria-label="Sections">
+      <a class="brand" href="../">Chief of Staff</a>
+      <span class="sep" aria-hidden="true"></span>
+        <a href="#1" data-slide="1" data-section="walkthrough">Walkthrough</a>
+        <a href="#9" data-slide="9" data-section="install">Install</a>
+      <button class="mini" type="button" id="plan-button">Start</button>
+    </nav>
+
+    <main class="stage anim" id="stage" aria-live="polite">
+      <div class="grid">
+        <div class="left">
+          <p class="eyebrow fu" id="eyebrow" style="--d:0s"></p>
+          <p class="giant" id="giant" hidden></p>
+          <h1 class="title" id="title"></h1>
+        </div>
+        <div class="right">
+          <p class="title-sm" id="title-sm" role="heading" aria-level="1" hidden></p>
+          <p class="copy" id="copy"></p>
+          <div class="actions">
+            <button class="cta fu" type="button" id="next-button" style="--d:.45s"><span class="label">Next</span><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>
+          <button class="ghost fu" type="button" id="start-button" style="--d:.55s">Start</button>
+            <a class="ghost fu" id="other-link" href="../part-one/" style="--d:.55s" hidden>Part one</a>
+            <button class="back fu" type="button" id="back-button" style="--d:.6s" aria-label="Back to the previous slide"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg><span>Back</span></button>
+          </div>
+          <div class="meta fu" style="--d:.65s">
+            <a class="home" href="../">Chief of Staff</a>
+            <span id="section-name"></span>
+            <div class="bar" id="bar" role="progressbar" aria-label="Deck progress" aria-valuemin="1" aria-valuemax="16" aria-valuenow="1"><i id="bar-fill"></i></div>
+            <span id="slide-count">Slide 1 / 16</span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+</div>
+
+<script>
+window.DECK = (function () {
+  'use strict';
+  var slides = [
+    { section: 'walkthrough', theme: 'Welcome',
+      one: 'Your chief of', two: 'staff, built.',
+      copy: 'Wan, part two. Part one was the principles; this is <br>what is now in the folder and how to switch it on. <br>Eight slides to walk through it, eight to install it.' },
+    { section: 'walkthrough', theme: 'Folder',
+      one: 'One folder,', two: 'plain text.',
+      copy: 'ChiefOfStaff sits on your Desktop. You own every file <br>and can open any of them. Inside: START-HERE, AGENTS, <br>MEMORY, HISTORY, context, business and the skills.' },
+    { section: 'walkthrough', theme: 'Instructions',
+      one: 'The file it', two: 'reads first.',
+      copy: 'AGENTS.md is read first in every session. Who you are, <br>how to work with you, the rules of the business, and <br>where everything lives. Under 120 lines, by design.' },
+    { section: 'walkthrough', theme: 'Context',
+      one: 'Six files,', two: 'pre-filled.',
+      copy: 'Six files in context/, pre-filled from your website, <br>socials and Notion hub. Every unconfirmed fact is marked <br>to verify, because wrong context is worse than none.' },
+    { section: 'walkthrough', theme: 'Memory',
+      one: 'What it learns,', two: 'what it did.',
+      copy: 'MEMORY.md holds lessons, one line each, saved only after <br>you approve the wording. HISTORY.md logs every session, <br>including anything that changed or left the folder.' },
+    { section: 'walkthrough', theme: 'Skills',
+      one: 'Eighteen skills,', two: 'typed as /name.',
+      copy: 'Two to begin: setup and tour. Four for daily work: <br>end-session, build-skill, task-audit and plan. <br>Three more are yours alone: /build-website (brief, build, publish), /suno for your music, and /check-in for a gentle start to the day.' },
+    { section: 'walkthrough', theme: 'Corpus',
+      one: 'Your portfolio,', two: 'live.',
+      copy: 'A short brief, a design prompt you love from MotionSites or anywhere else, rebuilt with your own words and photos, previewed on your Mac and published when you say so.' },
+    { section: 'walkthrough', theme: 'Trust',
+      one: 'Rules it', two: 'cannot break.',
+      copy: 'It cannot delete files. It never sees a password, card <br>or bank detail. It tells you before anything changes, <br>sends or leaves the folder. Tools connect read-only first.' },
+    { section: 'install', theme: 'Before',
+      one: 'Before', two: 'we start.',
+      copy: 'Three things on the table: the Claude desktop app for Mac, signed in and showing the Code tab. Three to five pieces of work you are proud of, and a folder of your own photos. And the laptop charger.' },
+    { section: 'install', theme: 'Step 1',
+      one: 'Step one:', two: 'the folder.',
+      copy: 'Unzip ChiefOfStaff.zip and drag the ChiefOfStaff folder <br>onto your Desktop. That is the whole install: plain files <br>in one place, and you can open any of them.' },
+    { section: 'install', theme: 'Step 2',
+      one: 'Step two:', two: 'open it in Claude.',
+      copy: 'Open the Claude app, click Code, choose Local and select <br>Desktop/ChiefOfStaff. When it asks whether you trust the <br>folder, say yes. Leave model and permissions on default.' },
+    { section: 'install', theme: 'Step 3',
+      one: 'Step three:', two: 'the tour.',
+      copy: 'Type /tour. Ten minutes: it opens each file in turn, <br>quotes one line and says what the file is for. Nothing <br>changes. It ends by suggesting the next step, /setup.' },
+    { section: 'install', theme: 'Step 4',
+      one: 'Step four:', two: 'the interview.',
+      copy: 'Type /setup. It confirms rather than asks: here is what <br>we have, still right? One item at a time. Say skip, stop <br>or just do it. Press the Globe (fn) key twice to talk instead of type.' },
+    { section: 'install', theme: 'Step 5',
+      one: 'Step five:', two: 'the drive.',
+      copy: 'Type /build-website. The first build installs Node, a free tool of about 200 MB. It takes you from a short brief and a design prompt you love to your own portfolio site, live on the web.' },
+    { section: 'install', theme: 'After',
+      one: 'After', two: 'tonight.',
+      copy: 'Once the site is live: /check-in in the morning, and say &quot;make a suno prompt&quot; whenever the music calls. One job per session, and every session ends with /end-session.' },
+    { section: 'install', theme: 'Next week',
+      one: 'Next week,', two: 'with James.',
+      copy: '/connect-github, when you are ready: undo, version history and a private off-site copy of the folder. Then /connect, Google Calendar first, read-only, so /metrics can count calls.' }
+  ];
+  var total = slides.length;
+  var sectionNames = { walkthrough: 'Walkthrough', install: 'Install' };
+  return { slides: slides, sectionNames: sectionNames, planSlide: 8, giant: null };
+})();
+</script>
+<script src="../assets/motion.js"></script>
+<script src="../assets/deck.js"></script>
+</body>
+</html>

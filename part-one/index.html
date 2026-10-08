@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Fourteen principles for onboarding an AI chief of staff: a new hire that reads everything, never sleeps, and runs your laptop.">
+<title>Meet Your Chief of Staff</title>
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Instrument+Serif:ital@1&display=swap">
+<link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body class="deck">
+<div class="hero-wrap">
+  <section class="frame" id="frame" aria-label="Meet Your Chief of Staff">
+    <video class="bg" autoplay muted loop playsinline preload="auto" disablepictureinpicture aria-hidden="true" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4"></video>
+    <div class="noise-overlay" aria-hidden="true"></div>
+    <div class="shade" aria-hidden="true"></div>
+
+    <nav class="pillnav" aria-label="Sections">
+      <a class="brand" href="../">Chief of Staff</a>
+      <span class="sep" aria-hidden="true"></span>
+        <a href="#1" data-slide="1" data-section="hire">Hire</a>
+        <a href="#4" data-slide="4" data-section="onboard">Onboard</a>
+        <a href="#10" data-slide="10" data-section="trust">Trust</a>
+        <a href="#12" data-slide="12" data-section="run">Run</a>
+      <button class="mini" type="button" id="plan-button">Tonight's plan</button>
+    </nav>
+
+    <main class="stage anim" id="stage" aria-live="polite">
+      <div class="grid">
+        <div class="left">
+          <p class="eyebrow fu" id="eyebrow" style="--d:0s"></p>
+          <p class="giant" id="giant" hidden></p>
+          <h1 class="title" id="title"></h1>
+        </div>
+        <div class="right">
+          <p class="title-sm" id="title-sm" role="heading" aria-level="1" hidden></p>
+          <p class="copy" id="copy"></p>
+          <div class="actions">
+            <button class="cta fu" type="button" id="next-button" style="--d:.45s"><span class="label">Next</span><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>
+            <a class="ghost fu" id="other-link" href="../part-two/" style="--d:.55s" hidden>Part two</a>
+            <button class="back fu" type="button" id="back-button" style="--d:.6s" aria-label="Back to the previous slide"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg><span>Back</span></button>
+          </div>
+          <div class="meta fu" style="--d:.65s">
+            <a class="home" href="../">Chief of Staff</a>
+            <span id="section-name"></span>
+            <div class="bar" id="bar" role="progressbar" aria-label="Deck progress" aria-valuemin="1" aria-valuemax="14" aria-valuenow="1"><i id="bar-fill"></i></div>
+            <span id="slide-count">Slide 1 / 14</span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+</div>
+
+<script>
+window.DECK = (function () {
+  'use strict';
+  var slides = [
+    { section: 'hire', theme: 'Welcome',
+      one: 'Meet your', two: 'chief of staff.',
+      copy: 'Wan, this is the plan for Wan tonight. A new hire <br>that reads everything, never sleeps, and runs your laptop. <br>Fourteen ideas, one per slide, before we build anything.' },
+    { section: 'hire', theme: 'Hire',
+      one: 'A hire,', two: 'not a tool.',
+      copy: 'Nobody builds a chief of staff. You hire one, then you <br>onboard it the way you’d onboard a brilliant person on <br>day one: who we are, what we do, how we like it done.' },
+    { section: 'hire', theme: 'Power',
+      one: 'Superhuman,', two: 'and in control.',
+      copy: 'It reads faster than any human, and it can open, edit, <br>send and browse on this laptop. That much power is <br>exactly why the next eleven slides exist.' },
+    { section: 'onboard', theme: 'Onboard',
+      one: 'Four things', two: 'every hire needs.',
+      copy: 'Knowledge of the business. Tools and access. SOPs for <br>how the work gets done. And a memory, so a lesson <br>learned once stays learned. We install all four tonight.' },
+    { section: 'onboard', theme: 'Folder',
+      one: 'The folder', two: 'is the office.',
+      copy: 'Everything lives in one folder on your laptop that you <br>own, written in plain text you can open and read. <br>No database, no dashboard, nothing hidden from you.' },
+    { section: 'onboard', theme: 'Instructions',
+      one: 'The file it', two: 'reads first.',
+      copy: 'One short instructions file is read at the start of every <br>session. It says who you are, how to work with you, and <br>where everything else lives. It stays lean on purpose.' },
+    { section: 'onboard', theme: 'Context',
+      one: 'Knowledge,', two: 'read on demand.',
+      copy: 'Six short files, each read only when a task needs it: you, <br>the business, offers, customers, voice and working style. <br>Wrong context is worse than none, so every file is dated.' },
+    { section: 'onboard', theme: 'Memory',
+      one: 'Memory', two: 'with a gate.',
+      copy: 'When you correct it, it proposes what to remember and <br>where. Nothing is saved until you approve the wording. <br>Small, true and yours, so it never contradicts itself.' },
+    { section: 'onboard', theme: 'Skills',
+      one: 'SOPs', two: 'become skills.',
+      copy: 'Do the job together until the result is right, then <br>package it as a skill you run by name. Fewer, better <br>skills beat a library, and each one keeps its own lessons.' },
+    { section: 'trust', theme: 'Trust',
+      one: 'Access without', two: 'giving up control.',
+      copy: 'Read-only first. Write access one tool at a time, when a <br>job needs it. Destructive actions blocked. And never a <br>password, card or bank detail typed into the agent.' },
+    { section: 'trust', theme: 'Sessions',
+      one: 'One job', two: 'per session.',
+      copy: 'Fresh sessions beat long ones. Start one for each job, <br>then end it by logging what was done, what was touched <br>outside the folder, and what was learned.' },
+    { section: 'run', theme: 'Plan',
+      one: 'Numbers first,', two: 'then a plan.',
+      copy: 'One source of live metrics, so questions get this <br>month’s answer. A written plan before anything big. <br>And a task audit that decides what to automate next.' },
+    { section: 'run', theme: 'Routines',
+      one: 'Prove it by hand,', two: 'then schedule it.',
+      copy: 'A skill earns a clock only after it works from a one-line <br>prompt. A routine is one line that runs a proven skill on <br>a timer, and every run has to show that it actually ran.' },
+    { section: 'run', theme: 'Tonight',
+      one: 'Keep it', two: 'healthy.',
+      copy: 'A monthly clean-up, nothing changed without your written <br>approval. Backup and version history connected next week. <br>Tonight: the interview, then the first real job.' }
+  ];
+  var total = slides.length;
+  var sectionNames = { hire: 'Hire', onboard: 'Onboard', trust: 'Trust', run: 'Run' };
+  return { slides: slides, sectionNames: sectionNames, planSlide: total - 1, giant: { 0: 'Wan' } };
+})();
+</script>
+<script src="../assets/motion.js"></script>
+<script src="../assets/deck.js"></script>
+</body>
+</html>
